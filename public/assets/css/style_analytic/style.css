@@ -1,0 +1,244 @@
+
+main .charts-section .recent-activity {
+    margin-top: 20px;
+    background-color: var(--panel-color);
+    border-radius: 10px;
+    padding: 0 20px 20px 20px;
+    box-shadow: 4px 4px 16px var(--shadow-box);
+    transition: var(--tran-04);
+    /* flex-grow: 1; */
+
+}
+
+main .charts-section {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 20px;
+}
+
+    /* Chart Container */
+main .charts-section .chart-responsive{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+            /* Parent card */
+.chart-card {
+    padding: 20px;
+    /* color: #a5a4a4; */
+}
+
+    /* Grid for 2 cards */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    user-select: none;
+}
+
+    /* Small cards */
+.summary-card {
+    background: linear-gradient(
+        135deg,
+        #2491df,   /* Light Blue */
+        #36cf43  /* Light Green */
+        /* #caa467 250%  Light Orange */
+    );
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    /* box-shadow: 0 3px 10px var(--shadow-box); */
+  box-shadow: 0 3px 10px rgb(200, 200, 240);
+
+    /* box-shadow: 0 1px 10px rgb(177, 177, 243); */
+    transition: var(--tran-04);
+    /* transition: transform 0.25s ease, box-shadow 0.25s ease; */
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    /* box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); */
+    box-shadow: 0 6px 16px rgb(200, 200, 240);
+
+}
+
+    /* Title */
+.summary-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+    /* Number */
+.summary-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+}
+
+
+
+
+
+/* Section */
+.purpose-section {
+  padding: 20px;
+}
+
+/* Grid 2x2 */
+.purpose-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  /* background-color: red; */
+}
+
+/* Card */
+.purpose-card {
+  background: #f2f2f2;
+  border-radius: 14px;
+  padding: 32px 16px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  justify-content: space-between;
+  box-shadow: 0 3px 10px rgb(200, 200, 240);
+  /* box-shadow: 0 1px 10px rgb(177, 177, 243); */
+  transition: var(--tran-04);
+  /* transition: transform 0.5s ease, box-shadow 0.25s ease; */
+}
+
+
+
+.purpose-card:hover {
+  transform: translateY(-3px);
+  /* box-shadow: 0 3px 10px var(--shadow-box); */
+}
+
+
+/* Left */
+.purpose-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+}
+
+/* Icon */
+.purpose-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+}
+
+
+/* Icon colors */
+.icon-blue {
+  background: linear-gradient(135deg, #3469c5, #00b0ff);
+}
+
+.icon-green {
+  background: linear-gradient(135deg, #2ce97b, #498b1f);
+}
+
+.icon-red {
+  background: linear-gradient(135deg, #fd365e, #b33b3b);
+}
+
+.icon-teal {
+  background: linear-gradient(135deg, #d52dff, #bcfd24);
+}
+
+
+/* Text */
+
+/* .purpose-text{
+
+} */
+
+.purpose-text h6 {
+  margin: 2px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  /* color: #2f4f4f; */
+  color: var(--dark-light);
+}
+
+.purpose-text p {
+  margin: 2px 0;
+  font-size: 0.90rem;
+  /* color: #777; */
+  color: var(--dark-light);
+
+}
+
+/* Number */
+.purpose-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #2f4f4f;
+  color: var(--dark-light);
+  /* color: blue; */
+
+}
+
+
+
+
+#container-Egg_yolk{
+    max-width: 520px;
+    margin: auto;
+}
+
+body.dark main .purpose-grid .purpose-card {
+  background: #464444;
+}
+
+body.dark main .summary-card ,
+body.dark main .purpose-card{
+    box-shadow: 0 2px 5px rgba(250, 250, 250, 0.384);
+}
+
+
+body.dark main .summary-card:hover{
+    box-shadow: 0 5px 10px rgba(250, 250, 250, 0.226);
+
+}
+
+body.dark main .purpose-card:hover{
+    box-shadow: 0 5px 10px rgba(250, 250, 250, 0.384);
+}
+
+    /* Tablet */
+    @media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-number {
+        font-size: 1rem;
+    }
+
+
+    main .charts-section {
+        grid-template-columns: 1fr;
+    }
+
+    .purpose-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

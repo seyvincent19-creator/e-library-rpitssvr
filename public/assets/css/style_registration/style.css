@@ -1,0 +1,202 @@
+/* ── Root & body ─────────────────────────────────────────── */
+:root {
+    --blue-primary : #1a6bff;
+    --blue-dark    : #1558d6;
+    --blue-light   : #e8f0ff;
+    --text-dark    : #1a1a2e;
+    --text-muted   : #6b7280;
+    --border       : #d1d5db;
+    --radius       : 8px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family      : 'Poppins', sans-serif;
+    background-color : var(--blue-primary);
+    min-height       : 100vh;
+    display          : flex;
+    align-items      : center;
+    justify-content  : center;
+    padding          : 40px 16px;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.reg-card {
+    background    : #ffffff;
+    border-radius : 16px;
+    padding       : 40px 48px 44px;
+    width         : 100%;
+    max-width     : 820px;
+    box-shadow    : 0 8px 40px rgba(0,0,0,.18);
+}
+
+/* ── Title ───────────────────────────────────────────────── */
+.reg-title {
+    font-size     : 1.65rem;
+    font-weight   : 700;
+    color         : var(--text-dark);
+    margin-bottom : 4px;
+    position      : relative;
+    display       : inline-block;
+}
+
+.reg-title::after {
+    content          : '';
+    display          : block;
+    width            : 100%;
+    height           : 3px;
+    background       : var(--blue-primary);
+    border-radius    : 2px;
+    margin-top       : 4px;
+}
+
+/* ── Section heading ─────────────────────────────────────── */
+.section-label {
+    font-size     : 1rem;
+    font-weight   : 600;
+    color         : var(--text-dark);
+    margin-top    : 24px;
+    margin-bottom : 20px;
+}
+
+/* ── Form controls ───────────────────────────────────────── */
+.form-label {
+    font-size     : .8rem;
+    font-weight   : 500;
+    color         : var(--text-dark);
+    margin-bottom : 6px;
+}
+
+.form-control,
+.form-select {
+    border        : 1.5px solid var(--border);
+    border-radius : var(--radius);
+    font-size     : .85rem;
+    color         : var(--text-dark);
+    padding       : 10px 14px;
+    transition    : border-color .2s, box-shadow .2s;
+    background-color: #fff;
+}
+
+.form-control::placeholder { color: var(--text-muted); }
+
+.form-control:focus,
+.form-select:focus {
+    border-color : var(--blue-primary);
+    box-shadow   : 0 0 0 3px rgba(26,107,255,.12);
+    outline      : none;
+}
+
+/* date input – keep the native calendar icon */
+input[type="date"] { appearance: auto; }
+
+/* textarea */
+textarea.form-control { resize: vertical; min-height: 110px; }
+
+/* ── Next button ─────────────────────────────────────────── */
+.btn-next {
+    background    : var(--blue-primary);
+    border        : none;
+    border-radius : var(--radius);
+    color         : #fff;
+    font-size     : .9rem;
+    font-weight   : 600;
+    padding       : 12px 36px;
+    display       : inline-flex;
+    align-items   : center;
+    gap           : 8px;
+    margin-top    : 28px;
+    cursor        : pointer;
+    transition    : background .2s, transform .15s;
+}
+
+.btn-next:hover  { background: var(--blue-dark); transform: translateY(-1px); }
+.btn-next:active { transform: translateY(0); }
+
+/* ── Image Upload ────────────────────────────────────────── */
+.upload-zone {
+    border        : 2px dashed var(--border);
+    border-radius : var(--radius);
+    padding       : 20px 16px;
+    text-align    : center;
+    cursor        : pointer;
+    transition    : border-color .2s, background .2s;
+    background    : #fafafa;
+    position      : relative;
+}
+
+.upload-zone:hover,
+.upload-zone.dragover {
+    border-color : var(--blue-primary);
+    background   : var(--blue-light);
+}
+
+.upload-zone input[type="file"] {
+    position : absolute;
+    inset    : 0;
+    opacity  : 0;
+    cursor   : pointer;
+    width    : 100%;
+    height   : 100%;
+}
+
+.upload-icon {
+    font-size   : 2rem;
+    color       : var(--blue-primary);
+    display     : block;
+    margin-bottom: 8px;
+}
+
+.upload-text {
+    font-size  : .8rem;
+    color      : var(--text-muted);
+    line-height: 1.5;
+}
+
+.upload-text span {
+    color       : var(--blue-primary);
+    font-weight : 600;
+}
+
+/* preview */
+.img-preview-wrap {
+    display       : none;
+    position      : relative;
+    width         : 110px;
+    height        : 110px;
+    border-radius : var(--radius);
+    overflow      : hidden;
+    border        : 2px solid var(--blue-primary);
+}
+
+.img-preview-wrap img {
+    width      : 100%;
+    height     : 100%;
+    object-fit : cover;
+}
+
+.img-remove-btn {
+    position      : absolute;
+    top           : 4px;
+    right         : 4px;
+    background    : rgba(0,0,0,.55);
+    border        : none;
+    border-radius : 50%;
+    color         : #fff;
+    width         : 22px;
+    height        : 22px;
+    font-size     : .7rem;
+    display       : flex;
+    align-items   : center;
+    justify-content: center;
+    cursor        : pointer;
+    transition    : background .15s;
+}
+
+.img-remove-btn:hover { background: rgba(220,38,38,.8); }
+
+/* ── Responsive tweaks ───────────────────────────────────── */
+@media (max-width: 576px) {
+    .reg-card { padding: 28px 20px 32px; }
+}

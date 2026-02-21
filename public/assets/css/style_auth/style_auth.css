@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+body{
+    font-family: 'Poppins', 'sans-serif';
+    /* background-color: #ececec; */
+    box-sizing: border-box;
+}
+h4{
+    color: #646363;
+}
+#back-img{
+    width: 100wh;
+    height: 100vh;
+    background-image: url(../../image/img_auth/back_img.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+  }
+.img-fluid{
+    /* width: 250px; */
+    width: 200px;
+}
+
+label{
+    font-size: 15px;
+}
+/*------------------------ Login Container --------------------*/
+.box-area{
+    /* width: 930px; */
+    width: 830px;
+}
+/*------------------------ Right Box --------------------*/
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+/*------------------------ Custom Placeholder --------------------*/
+::placeholder{
+    font-size: 14px;
+}
+/*------------------------ Input_Password--------------------*/
+.input{
+    font-size: 15px;
+}
+#input_password{
+    position: relative;
+}
+/*------------------------ Icons Eye--------------------*/
+#togglePassword{
+    position: absolute;
+    right: 1px;
+    top: 26px;
+    cursor: pointer;
+    color: #cdcdcd;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: none;
+    /* background: red; */
+    padding: 6px 10px 6px 6px;
+
+}
+
+
+.form-select{
+    cursor: pointer;
+}
+
+/* ======================= in input Message Error */
+
+.error{
+    font-size: 14px;
+    font-weight: 400;
+}
+/* =======================  Image Google */
+#img-google{
+    width: 38px;
+}
+/*------------------------ For Small Screens--------------------*/
+
+@media (max-width: 767px){
+    .box-area{
+        margin: 0 10px;
+    }
+    .left-box{
+        height: 80px;
+        overflow: hidden;
+    }
+    .right-box{
+        padding: 20px;
+    }
+    #img-prit{
+        width: 60px;
+    }
+
+
+    .left-box p,
+    .left-box small{
+        display: none;
+    }
+    .role-select option{
+        font-size: 11px;
+    }
+
+
+
+}

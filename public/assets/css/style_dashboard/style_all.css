@@ -1,0 +1,186 @@
+main .card-dashboard .head .icon-people,
+main .card-dashboard .head .icon-member,
+main .card-dashboard .head .icon-out{
+  height: 50px;
+  width: 50px;
+  
+}
+
+
+main{
+  position: relative;
+  width: 100%;
+  padding: 0px 20px 20px 20px;
+}
+
+
+main  .recent-activity { 
+  margin-top: 20px;
+  background-color: var(--panel-color);
+  border-radius: 10px;
+  padding: 0 20px 20px 20px;
+  box-shadow: 4px 4px 16px var(--shadow-box);
+  transition: var(--tran-04);
+
+}
+
+
+
+main .info-data .card-dashboard{
+  padding: 10px 20px;
+}
+
+main .card-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* ⭐ ចំកណ្ដាលផ្ដេក */
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+main .card-dashboard .head {
+  width: 100%;                 /* ⭐ សំខាន់ */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;             /* ចន្លោះ h2 និង icon */
+}
+
+main .card-dashboard p {
+  margin-top: 8px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* main .card-dashboard .icon-people,
+main .card-dashboard .total-people{
+    color: blue;
+}
+
+main .card-dashboard .icon-people{
+  background: #e3f2fd;
+} */
+
+
+
+/* Form  */
+
+.dashboard .recent-activity form{
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: 1px;
+  /* background-color: green; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Reduce spacing of DataTables controls */
+div.dt-container .dt-length,
+div.dt-container .dt-info,
+div.dt-container .dt-paging {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Align pagination properly */
+div.dt-container .dt-paging {
+  display: flex;
+  justify-content: end;
+}
+
+div.dt-container .dt-paging .dt-paging-button {
+  padding: 0px;
+}
+
+div.dt-container .dt-paging .dt-paging-button:hover {
+  border: none;
+  background: none;
+}
+
+
+
+
+
+
+/* ធ្វើឲ្យ transition ពណ៌ និង background យឺត និង smooth */
+.table,
+.table th,
+.table td,
+table.dataTable,
+table.dataTable th,
+table.dataTable td {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+
+table.dataTable th{
+  color: #292828;
+}
+
+/* បើ DataTables ប្រើ odd/even អ្នកអាចផងដែរតវ៉ា */
+.table.dataTable tbody tr.odd td,
+.table.dataTable tbody tr.even td {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+
+
+
+/* Dark Form */
+body.dark main .recent-activity form .form-label{
+  color: var(--dark-light);
+}
+
+body.dark main .recent-activity form .form-control,
+body.dark main .recent-activity form .form-select{
+  background-color: #e7e7e7;
+}
+
+
+
+/* Dark DataTable */
+
+body.dark main .recent-activity div.dt-buttons,
+body.dark main .recent-activity div.dt-container div.dt-length label,
+body.dark main .recent-activity div.dt-container div.dt-search label,
+body.dark main .recent-activity .col-md-6{
+  color: var(--dark-light);
+}
+
+
+
+/* បើអ្នកប្រើ body.dark លើ parent */
+body.dark .table,
+body.dark table.dataTable,
+body.dark .table th,
+body.dark .table td,
+body.dark table.dataTable th,
+body.dark table.dataTable td {
+  /* ឧទាហរណ៍ពណ៌ dark */
+  /* ឬ rgba(0,0,0,0.95) */
+  /* background-color: #2c2c2c; */
+  background-color: #575656;   
+  /* background-color: #747474; */
+  color: var(--dark-light);
+  border-color: rgb(133, 129, 129);
+}
+
+
+body.dark table.dataTable th{
+  color: #202020;
+  background-color: #cfe2ff;
+}
+
