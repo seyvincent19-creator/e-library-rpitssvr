@@ -4,12 +4,8 @@ set -e
 # Run database migrations
 php artisan migrate --force
 
-# Seed database only on first deploy (when users table is empty)
-USER_COUNT=$(php artisan tinker --execute="echo App\Models\User::count();" 2>/dev/null | tail -1)
-if [ "$USER_COUNT" = "0" ]; then
-    echo "Seeding database..."
-    php artisan db:seed --force
-fi
+# Seed database (idempotent — uses firstOrCreate, safe to run every deploy)
+php artisan db:seed --force
 
 # Cache config/routes/views for performance
 php artisan config:cache
