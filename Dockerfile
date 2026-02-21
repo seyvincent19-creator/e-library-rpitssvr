@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     curl \
     zip \
     unzip \
+    ca-certificates \
     libpng-dev \
     oniguruma-dev \
     libxml2-dev \
