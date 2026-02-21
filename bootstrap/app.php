@@ -12,13 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
       ->withMiddleware(function (Middleware $middleware): void {
 
+        // Trust all proxies (required for DigitalOcean App Platform / load balancer)
+        $middleware->trustProxies(at: '*');
+
         $middleware->alias([
-            // Register custom middleware here
-            'role' => App\Http\Middleware\RoleMiddleware::class,
-            // Registration custom middleware here
+            'role'                  => App\Http\Middleware\RoleMiddleware::class,
             'registration.complete' => \App\Http\Middleware\EnsureRegistrationCompleted::class,
-
-
         ]);
 
     })
