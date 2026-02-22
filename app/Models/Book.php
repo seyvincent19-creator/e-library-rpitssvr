@@ -29,7 +29,7 @@ class Book extends Model
     {
         return $this->image
             ? asset('storage/' . $this->image)
-            : asset('assets/images/default-book.png');
+            : asset('assets/images/default-book.svg');
     }
 
     public function getFileUrlAttribute()

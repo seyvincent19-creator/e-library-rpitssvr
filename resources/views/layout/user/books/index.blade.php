@@ -267,7 +267,8 @@
                      data-language="{{ $book->language }}">
                     <div class="book-card">
                         <div class="book-cover-wrap">
-                            <img src="{{ $book->image_url }}" alt="{{ $book->title }}">
+                            <img src="{{ $book->image_url }}" alt="{{ $book->title }}"
+                                 onerror="this.onerror=null;this.src='{{ asset('assets/images/default-book.svg') }}'">
                             @if($book->file)
                                 <span class="pdf-badge"><i class="bi bi-file-earmark-pdf-fill"></i> PDF</span>
                             @endif

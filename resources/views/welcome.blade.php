@@ -349,7 +349,8 @@
                             @if($featuredBooks->count() > 0)
                                 @foreach($featuredBooks->take(6) as $book)
                                 <article class="home__article swiper-slide">
-                                    <img src="{{ $book->image_url }}" alt="{{ $book->title }}" class="home__img">
+                                    <img src="{{ $book->image_url }}" alt="{{ $book->title }}" class="home__img"
+                                         onerror="this.onerror=null;this.src='{{ asset('assets/images/default-book.svg') }}'">
                                 </article>
                                 @endforeach
                             @else
@@ -409,7 +410,8 @@
 
                             <img src="{{ $book->image_url }}"
                                  alt="{{ $book->title }}"
-                                 class="featured__img">
+                                 class="featured__img"
+                                 onerror="this.onerror=null;this.src='{{ asset('assets/images/default-book.svg') }}'">
 
                             <h3 class="featured__title">{{ Str::limit($book->title, 40) }}</h3>
                             <p class="featured__description">{{ Str::limit($book->subject, 45, '...') }}</p>
@@ -499,7 +501,8 @@
 
                             <img src="{{ $book->image_url }}"
                                  alt="{{ $book->title }}"
-                                 class="new__img">
+                                 class="new__img"
+                                 onerror="this.onerror=null;this.src='{{ asset('assets/images/default-book.svg') }}'">
                             <div>
                                 <h2 class="new__title">{{ Str::limit($book->title, 35) }}</h2>
                                 <p class="new__description">{{ Str::limit($book->subject, 40, '...') }}</p>
