@@ -209,25 +209,26 @@
 
         <!-- Stats -->
         <div class="stats-bar">
-            <div class="stat-chip">Total: <span id="totalCount">{{ $books->count() }}</span> books</div>
-            <div class="stat-chip">With PDF: <span>{{ $books->whereNotNull('file')->count() }}</span></div>
+            <div class="stat-chip">Total: <span>{{ $books->total() }}</span> books</div>
+            <div class="stat-chip">Page: <span>{{ $books->currentPage() }}</span> of <span>{{ $books->lastPage() }}</span></div>
         </div>
 
         <!-- Filter Bar -->
+        <form method="GET" action="{{ route('user.books.index') }}" id="filterForm">
         <div class="filter-bar">
             <div class="row g-3 align-items-center">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="input-group">
                         <span class="input-group-text bg-white border-end-0">
                             <i class="bi bi-search text-muted"></i>
                         </span>
-                        <input type="text" id="searchInput" class="form-control border-start-0 ps-0"
+                        <input type="text" name="search" class="form-control border-start-0 ps-0"
                                placeholder="Search by title, author, subject..."
                                value="{{ request('search') }}">
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <select id="filterCategory" class="form-select">
+                    <select name="category" class="form-select" onchange="this.form.submit()">
                         <option value="">All Categories</option>
                         <option value="textbook" {{ request('category') == 'textbook' ? 'selected' : '' }}>Textbook</option>
                         <option value="reference book" {{ request('category') == 'reference book' ? 'selected' : '' }}>Reference Book</option>
@@ -235,16 +236,25 @@
                         <option value="thesis" {{ request('category') == 'thesis' ? 'selected' : '' }}>Thesis</option>
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <select id="filterLanguage" class="form-select">
+                <div class="col-md-2">
+                    <select name="language" class="form-select" onchange="this.form.submit()">
                         <option value="">All Languages</option>
-                        <option value="khmer">Khmer</option>
-                        <option value="english">English</option>
-                        <option value="chinese">Chinese</option>
+                        <option value="khmer" {{ request('language') == 'khmer' ? 'selected' : '' }}>Khmer</option>
+                        <option value="english" {{ request('language') == 'english' ? 'selected' : '' }}>English</option>
+                        <option value="chinese" {{ request('language') == 'chinese' ? 'selected' : '' }}>Chinese</option>
                     </select>
+                </div>
+                <div class="col-md-2 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-sm flex-fill">
+                        <i class="bi bi-search me-1"></i>Search
+                    </button>
+                    <a href="{{ route('user.books.index') }}" class="btn btn-outline-secondary btn-sm flex-fill">
+                        <i class="bi bi-x-lg"></i>
+                    </a>
                 </div>
             </div>
         </div>
+        </form>
 
         <!-- Book Grid -->
         <div class="row g-4" id="bookGrid">
@@ -320,12 +330,12 @@
             @endforelse
         </div>
 
-        <!-- Empty search result -->
-        <div id="noResult" class="empty-state" style="display:none;">
-            <i class="bi bi-search d-block"></i>
-            <h5>No books match your search</h5>
-            <p>Try different keywords or reset filters.</p>
-        </div>
+        <!-- Pagination -->
+        @if($books->hasPages())
+            <div class="d-flex justify-content-center mt-4">
+                {{ $books->links('pagination::bootstrap-5') }}
+            </div>
+        @endif
 
     </div>
 
@@ -405,32 +415,5 @@
         new bootstrap.Modal(document.getElementById('bookDetailModal')).show();
     });
 
-    // ─── Search & Filter ─────────────────────────────────────────
-    function filterBooks() {
-        const search   = $('#searchInput').val().toLowerCase().trim();
-        const category = $('#filterCategory').val().toLowerCase();
-        const language = $('#filterLanguage').val().toLowerCase();
-
-        let visible = 0;
-        $('.book-item').each(function () {
-            const d       = $(this).data();
-            const matchS  = !search   || d.title.includes(search) || d.author.includes(search) || d.subject.includes(search);
-            const matchC  = !category || d.category === category;
-            const matchL  = !language || d.language === language;
-
-            if (matchS && matchC && matchL) {
-                $(this).show();
-                visible++;
-            } else {
-                $(this).hide();
-            }
-        });
-
-        $('#totalCount').text(visible);
-        $('#noResult').toggle(visible === 0);
-    }
-
-    $('#searchInput').on('input', filterBooks);
-    $('#filterCategory, #filterLanguage').on('change', filterBooks);
 </script>
 @endsection

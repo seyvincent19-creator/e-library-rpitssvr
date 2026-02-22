@@ -22,12 +22,15 @@ class UserBookController extends Controller
             });
         }
 
-        // Pre-fill category filter
         if ($request->filled('category')) {
             $query->where('category', $request->category);
         }
 
-        $books = $query->get();
+        if ($request->filled('language')) {
+            $query->where('language', $request->language);
+        }
+
+        $books = $query->paginate(12)->withQueryString();
 
         return view('layout.user.books.index', compact('books'));
     }
