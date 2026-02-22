@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Lecturer extends Model
 {
@@ -87,7 +88,7 @@ class Lecturer extends Model
     public function getImageUrlAttribute()
     {
         return $this->image
-            ? asset('storage/' . $this->image)
+            ? Storage::disk(config('filesystems.default'))->url($this->image)
             : asset('assets/images/default-avatar.png');
     }
 }

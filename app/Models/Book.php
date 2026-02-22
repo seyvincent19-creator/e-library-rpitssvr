@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Book extends Model
 {
@@ -28,12 +29,14 @@ class Book extends Model
     public function getImageUrlAttribute()
     {
         return $this->image
-            ? asset('storage/' . $this->image)
+            ? Storage::disk(config('filesystems.default'))->url($this->image)
             : asset('assets/images/default-book.svg');
     }
 
     public function getFileUrlAttribute()
     {
-        return $this->file ? asset('storage/' . $this->file) : null;
+        return $this->file
+            ? Storage::disk(config('filesystems.default'))->url($this->file)
+            : null;
     }
 }

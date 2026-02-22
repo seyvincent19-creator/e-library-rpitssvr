@@ -35,7 +35,7 @@ class StudentController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('students', 'public');
+            $data['image'] = $request->file('image')->store('students', config('filesystems.default'));
         }
 
         Student::create($data);
@@ -76,9 +76,9 @@ class StudentController extends Controller
 
         if ($request->hasFile('image')) {
             if ($student->image) {
-                Storage::disk('public')->delete($student->image);
+                Storage::disk(config('filesystems.default'))->delete($student->image);
             }
-            $data['image'] = $request->file('image')->store('students', 'public');
+            $data['image'] = $request->file('image')->store('students', config('filesystems.default'));
         } else {
             unset($data['image']);
         }
@@ -93,7 +93,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         if ($student->image) {
-            Storage::disk('public')->delete($student->image);
+            Storage::disk(config('filesystems.default'))->delete($student->image);
         }
 
         $student->delete();
@@ -130,7 +130,7 @@ class StudentController extends Controller
         $validated['status'] = 'active';
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('students', 'public');
+            $validated['image'] = $request->file('image')->store('students', config('filesystems.default'));
         }
 
         $student = Student::create($validated);

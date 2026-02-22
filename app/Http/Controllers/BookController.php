@@ -29,10 +29,10 @@ class BookController extends Controller
     public function store(BookRequest $request)
     {
         $data = $request->validated();
-        $data['image'] = $request->file('image')->store('books', 'public');
+        $data['image'] = $request->file('image')->store('books', config('filesystems.default'));
 
         if ($request->hasFile('file')) {
-            $data['file'] = $request->file('file')->store('books/pdf', 'public');
+            $data['file'] = $request->file('file')->store('books/pdf', config('filesystems.default'));
         }
 
         Book::create($data);
@@ -71,17 +71,17 @@ class BookController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($book->image);
-            $data['image'] = $request->file('image')->store('books', 'public');
+            Storage::disk(config('filesystems.default'))->delete($book->image);
+            $data['image'] = $request->file('image')->store('books', config('filesystems.default'));
         } else {
             unset($data['image']);
         }
 
         if ($request->hasFile('file')) {
             if ($book->file) {
-                Storage::disk('public')->delete($book->file);
+                Storage::disk(config('filesystems.default'))->delete($book->file);
             }
-            $data['file'] = $request->file('file')->store('books/pdf', 'public');
+            $data['file'] = $request->file('file')->store('books/pdf', config('filesystems.default'));
         } else {
             unset($data['file']);
         }
@@ -95,10 +95,10 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         if ($book->image) {
-            Storage::disk('public')->delete($book->image);
+            Storage::disk(config('filesystems.default'))->delete($book->image);
         }
         if ($book->file) {
-            Storage::disk('public')->delete($book->file);
+            Storage::disk(config('filesystems.default'))->delete($book->file);
         }
         $book->delete();
 
@@ -109,10 +109,10 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        if (!$book->file || !Storage::disk('public')->exists($book->file)) {
+        if (!$book->file || !Storage::disk(config('filesystems.default'))->exists($book->file)) {
             return back()->with('error', 'No PDF file available for this book.');
         }
 
-        return Storage::disk('public')->download($book->file, $book->title . '.pdf');
+        return Storage::disk(config('filesystems.default'))->download($book->file, $book->title . '.pdf');
     }
 }

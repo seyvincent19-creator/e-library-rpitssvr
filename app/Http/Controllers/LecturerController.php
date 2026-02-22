@@ -33,7 +33,7 @@ class LecturerController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('lecturers', 'public');
+            $data['image'] = $request->file('image')->store('lecturers', config('filesystems.default'));
         }
 
         Lecturer::create($data);
@@ -72,9 +72,9 @@ class LecturerController extends Controller
 
         if ($request->hasFile('image')) {
             if ($lecturer->image) {
-                Storage::disk('public')->delete($lecturer->image);
+                Storage::disk(config('filesystems.default'))->delete($lecturer->image);
             }
-            $data['image'] = $request->file('image')->store('lecturers', 'public');
+            $data['image'] = $request->file('image')->store('lecturers', config('filesystems.default'));
         } else {
             unset($data['image']);
         }
@@ -89,7 +89,7 @@ class LecturerController extends Controller
         $lecturer = Lecturer::findOrFail($id);
 
         if ($lecturer->image) {
-            Storage::disk('public')->delete($lecturer->image);
+            Storage::disk(config('filesystems.default'))->delete($lecturer->image);
         }
 
         $lecturer->delete();
@@ -119,7 +119,7 @@ class LecturerController extends Controller
         $validated['status'] = 'active';
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('lecturers', 'public');
+            $validated['image'] = $request->file('image')->store('lecturers', config('filesystems.default'));
         }
 
         $lecturer = Lecturer::create($validated);

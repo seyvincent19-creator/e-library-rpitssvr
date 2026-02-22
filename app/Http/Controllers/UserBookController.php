@@ -39,10 +39,10 @@ class UserBookController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        if (!$book->file || !Storage::disk('public')->exists($book->file)) {
+        if (!$book->file || !Storage::disk(config('filesystems.default'))->exists($book->file)) {
             return back()->with('error', 'No PDF file available for this book.');
         }
 
-        return Storage::disk('public')->download($book->file, $book->title . '.pdf');
+        return Storage::disk(config('filesystems.default'))->download($book->file, $book->title . '.pdf');
     }
 }
